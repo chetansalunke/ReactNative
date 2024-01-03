@@ -2,15 +2,18 @@ import { FlatList } from "react-native";
 import CategoryGridTile from "../components/CategoryGridTile";
 
 import { CATEGORIES } from "../data/dummy-data";
+import { useNavigation } from "@react-navigation/native";
 
 
-function CategoriesScreen({ navigation }) {
+function CategoriesScreen() {
+
+  // using the navigation hookhook 
+const navigation = useNavigation(); 
 
     function renderCategoryItem(itemData) {
         function pressHandler() {
             navigation.navigate('MealsOverview',{
-                catgoryId: itemData.item.id,
-                
+              catgoryId: itemData.item.id,
             });
         }
       
@@ -28,7 +31,6 @@ function CategoriesScreen({ navigation }) {
       data={CATEGORIES}
       keyExtractor={(item) => item.id}
       renderItem={renderCategoryItem}
-      
       numColumns={2}
     />
   );
