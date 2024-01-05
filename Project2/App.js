@@ -6,7 +6,49 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverviewScreen from "./screens/MealsOverview";
 import { CATEGORIES } from "./data/dummy-data";
 import MealDetailScreen from "./screens/MealDetailScreen";
+
+import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Meal from "./models/meal";
+import FavoritesScreen from "./screens/FavoritesScreen";
+
 const Stack = createNativeStackNavigator();
+
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: "#00A8D6" },
+        headerTintColor: "white",
+        sceneContainerStyle: { backgroundColor: "#00A8D6" },
+        drawerContentStyle: { backgroundColor: "#00A8D6" },
+        drawerActiveTintColor: "white",
+      }}
+    >
+      <Drawer.Screen
+        name="Categories"
+        component={CategoriesScreen}
+        options={{
+          title: "All Categories",
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="list" color={color} size={size} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={{
+          drawerIcon: ({ size, color }) => (
+            <Ionicons name="star" color={color} size={size} />
+          ),
+        }}
+      />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
   return (
@@ -19,16 +61,19 @@ export default function App() {
         }}
       >
         <Stack.Screen
-          name="MealsCategories"
-          component={CategoriesScreen}
+          name="Drawer"
+          component={DrawerNavigator}
           options={{
-            title: "All Categories",
+            headerShown: false,
           }}
         />
 
         <Stack.Screen
           name="MealsOverview"
           component={MealsOverviewScreen}
+          options={{
+            title: "About the meal",
+          }}
           // options={({ route, navigation }) => {
           //   const catId = route.params.catgoryId;
           //   const displayTitle = CATEGORIES.filter((item) => {
