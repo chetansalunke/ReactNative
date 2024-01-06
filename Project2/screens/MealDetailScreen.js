@@ -1,32 +1,60 @@
-import { Text, View, Image,Button, StyleSheet, ScrollView } from "react-native";
-import { useLayoutEffect } from "react";
+import {
+  Text,
+  View,
+  Image,
+  Button,
+  StyleSheet,
+  ScrollView,
+} from "react-native";
+import { useContext, useLayoutEffect } from "react";
 import { MEALS } from "../data/dummy-data";
-
 import MealsDetails from "../components/MealsDetails";
 import Subtitle1 from "../components/MealDetail/Subtitle1";
 import List from "../components/MealDetail/List";
 import IconButton from "../components/MealDetail/IconButton";
+import { FavoritesContext } from "../store/context/favorites-context";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorite, removeFavorite } from "../store/redux/favorites";
+
+
 function MealDetailScreen({ route, navigation }) {
+  // const favoriteMealCtcx = useContext(FavoritesContext);
 
-const headePressHandler = ()=>{
-  console.log('Pressed');
+  // store/favoriateMeals/ids access karu shakto
+  const favoriteMealIds = useSelector((state) => state.favoriateMeals.ids);
 
-};
-
-  useLayoutEffect(()=>{
-
-    navigation.setOptions({
-      headerRight:()=>{
-        return <IconButton icon="star" color="white" onPress={headePressHandler}/>
-      }
-    })
-  },[navigation,headePressHandler]);
-
+  const dispatch = useDispatch();
 
   // ithe aaplyla aapan send kelee mealId bhetii (route use karun aapan ti extract karto)
   const mealId = route.params.mealId;
 
   const selectedMeals = MEALS.find((meal) => meal.id === mealId);
+
+  const mealIsFavorite = favoriteMealIds.includes(mealId);
+
+  const changeFavoriteStatusHandler = () => {
+    if (mealIsFavorite) {
+      // favoriteMealCtcx.removeFavorite(mealId);
+      dispatch(removeFavorite({ id: mealId }));
+    } else {
+      // favoriteMealCtcx.addFavorite(mealId);
+      dispatch(addFavorite({ id: mealId }));
+    }
+  };
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            icon={mealIsFavorite ? "star" : "star-outline"}
+            color="white"
+            onPress={changeFavoriteStatusHandler}
+          />
+        );
+      },
+    });
+  }, [navigation, changeFavoriteStatusHandler]);
 
   return (
     <ScrollView style={styles.rootContainer}>
@@ -53,8 +81,8 @@ const headePressHandler = ()=>{
 export default MealDetailScreen;
 
 const styles = StyleSheet.create({
-  rootContainer:{
-    marginBottom:32
+  rootContainer: {
+    marginBottom: 32,
   },
   image: {
     width: "100%",
@@ -85,8 +113,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     margin: 6,
   },
-  listOuterContainer:{
-    alignContent:'center'
+  listOuterContainer: {
+    alignContent: "center",
   },
   listContainer: {
     witdth: "80%",

@@ -11,6 +11,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Meal from "./models/meal";
 import FavoritesScreen from "./screens/FavoritesScreen";
+import FavoritesContextProvider from "./store/context/favorites-context";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createNativeStackNavigator();
 
@@ -52,53 +55,58 @@ function DrawerNavigator() {
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: "#00A8D6" },
-          headerTintColor: "white",
-          contentStyle: { backgroundColor: "#00C0D6" },
-        }}
-      >
-        <Stack.Screen
-          name="Drawer"
-          component={DrawerNavigator}
-          options={{
-            headerShown: false,
+    // <FavoritesContextProvider>
+    <Provider store={store} >
+
+      <NavigationContainer>
+        <StatusBar style="light" />
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#00A8D6" },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: "#00C0D6" },
           }}
-        />
+        >
+          <Stack.Screen
+            name="Drawer"
+            component={DrawerNavigator}
+            options={{
+              headerShown: false,
+            }}
+          />
 
-        <Stack.Screen
-          name="MealsOverview"
-          component={MealsOverviewScreen}
-          options={{
-            title: "About the meal",
-          }}
-          // options={({ route, navigation }) => {
-          //   const catId = route.params.catgoryId;
-          //   const displayTitle = CATEGORIES.filter((item) => {
+          <Stack.Screen
+            name="MealsOverview"
+            component={MealsOverviewScreen}
+            options={{
+              title: "About the meal",
+            }}
+            // options={({ route, navigation }) => {
+            //   const catId = route.params.catgoryId;
+            //   const displayTitle = CATEGORIES.filter((item) => {
 
-          //     return (item.title?item.id===catId:'nooo');
-          //   });
-          //   console.log(displayTitle[0].title);
+            //     return (item.title?item.id===catId:'nooo');
+            //   });
+            //   console.log(displayTitle[0].title);
 
-          //   return {
-          //     title: displayTitle[0].title,
-          //   };
-          // }}
-        />
-        <Stack.Screen
-          name="MealDetail"
-          component={MealDetailScreen}
-          // options={{
-          //   headerRight: () => {
-          //     return <Button title="tap me" />;
-          //   },
-          // }}
-        />
-      </Stack.Navigator>
-      <StatusBar style="light" />
-    </NavigationContainer>
+            //   return {
+            //     title: displayTitle[0].title,
+            //   };
+            // }}
+          />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
+            // options={{
+            //   headerRight: () => {
+            //     return <Button title="tap me" />;
+            //   },
+            // }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+    // </FavoritesContextProvider>
   );
 }
 
