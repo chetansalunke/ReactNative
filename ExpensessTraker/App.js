@@ -8,6 +8,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { GlobalStyles } from "./constants/styles";
+import IconButton from "./UI/IconButton";
+import ExpensesContextProvider from "./store/expenses-context";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -26,13 +28,13 @@ function ExpensesOverview() {
         tabBarActiveTintColor: "#424b4b",
 
         headerRight: ({ tintColor }) => (
-          <Ionicons
+          <IconButton
+            icon="add"
+            size={28}
+            color={tintColor}
             onPress={() => {
               navigation.navigate("ManageExpenseScreen");
             }}
-            name="add"
-            size={34}
-            color={tintColor}
           />
         ),
       })}
@@ -71,6 +73,7 @@ function ExpensesOverview() {
 
 export default function App() {
   return (
+   <ExpensesContextProvider>
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -93,11 +96,13 @@ export default function App() {
           name="ManageExpenseScreen"
           component={MainExpenseScreen}
           options={{
-            presentation: 'modal',
+            presentation: "modal",
           }}
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </ExpensesContextProvider>
+   
   );
 }
 
