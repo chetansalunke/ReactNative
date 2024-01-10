@@ -24,21 +24,12 @@ const express = require('express');
 
 const app = express();
 
-app.set("view engine","ejs");
+// MIDDELWARES
+app.use(express.json()); // To return files as json
 
-app.use((req,res,next)=>{
-
-    // console.log("moye moye");
-    next();
-
-})
-app.get("/",(request,response)=>{
-    response.render("index");
-})
-app.get("/profile",(request,response)=>{
-    
-})
+// ROUTES
+app.use("/api",require('./routes/router'));
 
 app.listen(3000,()=>{
-    console.log("Server is running on the port 3000");
-})
+console.log("The server is started running on the port 3000");
+});
