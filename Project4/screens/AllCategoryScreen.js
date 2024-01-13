@@ -7,24 +7,23 @@ import axios from 'axios';
 const AllCategoryScreen=()=>{
     const [categories, setCategories] = useState([]);
 
-    useEffect(() => {
-        // Fetch data from API
-        fetchData();
-      }, []);
-
-      const fetchData = async () => {
-        try {
-          // Replace the URL with your actual API endpoint
-          const response = await axios.get('http://localhost:3000/api/category');
-          const data = response.data;
-          setCategories(data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-
+    // useEffect(() => {
+    //   fetchData();
+    // }, []);
+  
+    // const fetchData = async () => {
+    //   try {
+    //     const response = await axios.get('http://localhost:3000/api/data');
+    //     // setCategories(response.data);
+    //     console.log("Before");
+    //     console.log(response.data);
+    //     console.log("After");
+    //   } catch (error) {
+    //     console.error('Error fetching data from API:', error);
+    //   }
+    // };
 return(
-    <CategoryList data={categories} />
+    <CategoryList data={CATEGORIES} />
 );
 }
 export default AllCategoryScreen;

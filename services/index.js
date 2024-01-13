@@ -28,8 +28,15 @@ const app = express();
 app.use(express.json()); // To return files as json
 
 // ROUTES
+const corsOptions = {
+    origin: ['http://192.168.0.161:8081'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+  };
+  
 app.use("/api",require('./routes/router'));
-app.use(cors());
+app.use(cors(corsOptions)); 
 app.listen(3000,()=>{
 console.log("The server is started running on the port 3000");
 });

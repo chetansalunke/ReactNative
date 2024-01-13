@@ -54,21 +54,21 @@ const createUser = (req, res) => {
   );
 };
 
-const getAllCategory = (req, res) => {
+  const getAllCategory = (req, res) => {
 
-  connection.execute('select * from api.category',(err,result,fields)=>{
-    if(err)
-    {
-      res.status(500).send({message:"Error while fatching category"},err);
-      console.log(err.message);
-      return;
-    }
+    connection.execute('select * from api.product',(err,result,fields)=>{
+      if(err)
+      {
+        res.status(500).send({message:"Error while fatching category"},err);
+        console.log(err.message);
+        return;
+      }
 
-    res.send(result);
+      res.send(result);
 
-  })
+    })
 
-};
+  };
 const getProduceId = (req, res) => {
 
   const id = req.params.id;

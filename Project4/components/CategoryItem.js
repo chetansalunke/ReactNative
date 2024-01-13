@@ -1,7 +1,8 @@
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
-const CategoryItem = ({
-    name,
-    imageUrl,}) => {
+import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
+
+const CategoryItem = ({ name, image_url }) => {
+  console.log("from the item");
+  console.log(name, image_url);
   return (
     <Pressable
       style={({ pressed }) => [
@@ -10,7 +11,7 @@ const CategoryItem = ({
       ]}
       android_ripple={{ color: 'rgba(0, 0, 0, 0.1)' }}
     >
-     <Image source={{ uri: imageUrl }} style={styles.image} />
+      {image_url && <Image source={{ uri: image_url }} style={styles.image} />}
 
       <View style={styles.overlay}>
         <Text style={styles.categoryName}>{name}</Text>
@@ -19,43 +20,45 @@ const CategoryItem = ({
   );
 };
 
-
 const styles = StyleSheet.create({
-    container: {
-      borderRadius: 10,
-      overflow: 'hidden',
-      margin: 10,
-      ...Platform.select({
-        ios: {
-          shadowColor: 'black',
-          shadowOffset: { width: 0, height: 2 },
-          shadowOpacity: 0.3,
-          shadowRadius: 4,
-        },
-        android: {
-          elevation: 5,
-        },
-      }),
-    },
-    containerPressed: {
-      opacity: 0.6,
-    },
-    image: {
-      width: '100%',
-      height: 150,
-      resizeMode: 'cover',
-    },
-    overlay: {
-      ...StyleSheet.absoluteFillObject,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      padding: 10,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    categoryName: {
-      fontSize: 18,
-      fontWeight: 'bold',
-      color: 'white',
-    },
-  });
+  container: {
+    borderRadius: 10,
+    overflow: 'hidden',
+    margin: 5,
+    width: '48%', // Adjusted width for a two-column layout
+    aspectRatio: 1, // Maintain aspect ratio
+    ...Platform.select({
+      ios: {
+        shadowColor: 'black',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+  containerPressed: {
+    opacity: 0.6,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  categoryName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+});
+
 export default CategoryItem;

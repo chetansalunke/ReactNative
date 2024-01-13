@@ -1,6 +1,7 @@
 import { Text } from "react-native";
+import ProductList from "../components/ProductList";
 
 const ProductScreen=()=>{
-return <Text>HI SIgnin </Text>
+return <ProductList items={ddasd}/>
 }
 export default ProductScreen;
