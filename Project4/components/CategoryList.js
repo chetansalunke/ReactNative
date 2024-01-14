@@ -1,6 +1,8 @@
 import CategoryItem from "./CategoryItem";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 const CategoryList = ({ data }) => {
+
+  
   const renderItem = ({ item }) => (
     <CategoryItem name={item.title} image_url={item.imageUrl} id={item.id}  />
   );

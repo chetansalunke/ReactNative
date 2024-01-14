@@ -9,7 +9,7 @@ const CategoryItem = ({ name, image_url,id }) => {
 
   // item click handler
   const categoryPressHandler=()=>{
-    navigation.navigate('Product',);
+    navigation.navigate('Product',{id:id});
     console.log("Category Id "+id);
   }
   return (
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     padding: 10,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.27)',
   },
   categoryName: {
     fontSize: 18,
