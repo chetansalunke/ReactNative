@@ -1,7 +1,10 @@
 import { Text } from "react-native";
-import ProductList from "../components/ProductList";
+import ProductList from "../components/product/ProductList";
+import { PRODUCT } from "../data/dummy-data";
 
 const ProductScreen=()=>{
-return <ProductList items={ddasd}/>
+
+return <ProductList data={PRODUCT}/>
 }
 export default ProductScreen;
+ 

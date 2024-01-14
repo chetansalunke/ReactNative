@@ -1,8 +1,17 @@
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 
-const CategoryItem = ({ name, image_url }) => {
+const CategoryItem = ({ name, image_url,id }) => {
   console.log("from the item");
-  console.log(name, image_url);
+  console.log(name, image_url,id);
+
+  const navigation = useNavigation();
+
+  // item click handler
+  const categoryPressHandler=()=>{
+    navigation.navigate('Product',);
+    console.log("Category Id "+id);
+  }
   return (
     <Pressable
       style={({ pressed }) => [
@@ -10,6 +19,7 @@ const CategoryItem = ({ name, image_url }) => {
         pressed && styles.containerPressed,
       ]}
       android_ripple={{ color: 'rgba(0, 0, 0, 0.1)' }}
+      onPress={categoryPressHandler}
     >
       {image_url && <Image source={{ uri: image_url }} style={styles.image} />}
 
@@ -24,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
     overflow: 'hidden',
-    margin: 5,
+    margin: 3,
     width: '48%', // Adjusted width for a two-column layout
     aspectRatio: 1, // Maintain aspect ratio
     ...Platform.select({
