@@ -2,15 +2,14 @@ import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, Pressable, StyleSheet, Platform } from 'react-native';
 
 const CategoryItem = ({ name, image_url,id }) => {
-  console.log("from the item");
-  console.log(name, image_url,id);
+  // console.log("from the item");
+  // console.log(name, image_url,id);
 
   const navigation = useNavigation();
 
   // item click handler
   const categoryPressHandler=()=>{
-    navigation.navigate('Product',{id:id});
-    console.log("Category Id "+id);
+    navigation.navigate('Product',{cat_id:id});
   }
   return (
     <Pressable

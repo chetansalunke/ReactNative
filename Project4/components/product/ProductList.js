@@ -10,7 +10,7 @@ const ProductList = ({ data }) => {
   return (
     <FlatList
       data={data}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item) => item.name}
       renderItem={renderItem}
       contentContainerStyle={{ padding: 16 }}
     />

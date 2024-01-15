@@ -1,9 +1,13 @@
+import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ProductItem = ({ product}) => {
-    console.log(product)
+
+
+   
+    // console.log(product)
   const [isLiked, setIsLiked] = useState(false);
 
   // Function to handle the like button press
@@ -16,7 +20,7 @@ const ProductItem = ({ product}) => {
       style={styles.productContainer}
       
     >
-      <Image source={{ uri: product.image_url }} style={styles.productImage} />
+      <Image source={{ uri: product.item.image_url }} style={styles.productImage} />
 
       <View style={styles.overlay}>
         <TouchableOpacity
@@ -32,8 +36,8 @@ const ProductItem = ({ product}) => {
       </View>
 
       <View style={styles.productInfo}>
-        <Text style={styles.productName}>{product.name}</Text>
-        <Text style={styles.productPrice}>${product.price}</Text>
+        <Text style={styles.productName}>{product.item.name}</Text>
+        <Text style={styles.productPrice}>${product.item.price}</Text>
       </View>
     </TouchableOpacity>
   );

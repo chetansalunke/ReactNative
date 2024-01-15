@@ -119,4 +119,68 @@ export const PRODUCT = [
     7,
     "https://m.media-amazon.com/images/I/51NPFoz5cOS.jpg"
   ),
+  new Product(
+    10,
+    "Bluetooth Earbuds",
+    "Wireless Bluetooth earbuds with long battery life and compact design",
+    "50",
+    4,
+    "https://m.media-amazon.com/images/I/61autD8TAxL.jpg"
+  ),
+  new Product(
+    11,
+    "Backpack",
+    "Durable and stylish backpack with multiple compartments for storage",
+    "35",
+    2,
+    "https://media.istockphoto.com/id/820482470/photo/backpack.jpg?s=612x612&w=0&k=20&c=iUP2CSdHYco7zt56iecRphEn4FiXLDrtd4B9wiyAIT8="
+  ),
+  new Product(
+    12,
+    "Smart Watch",
+    "Fitness and health tracking smartwatch with a vibrant display",
+    "120",
+    3,
+    "https://media.gettyimages.com/id/481616102/photo/apple-watch-sport.jpg?s=612x612&w=0&k=20&c=uJuuSi9jiwjhAm8lehYQTskuPkrQOJSM9rBrbpn-zQw="
+  ),
+  new Product(
+    13,
+    "Sunglasses",
+    "Fashionable sunglasses with UV protection, available in various styles",
+    "25",
+    5,
+    "https://media.istockphoto.com/id/1081398784/photo/sunglass-on-white-background.jpg?s=612x612&w=0&k=20&c=3gwUtbgJcRcjB3U60IpRhGNYFSNVYK6QfgrlhVVgK9w="
+  ),
+  new Product(
+    14,
+    "Desk Organizer",
+    "Organize your workspace with a multifunctional desk organizer",
+    "20",
+    1,
+    "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1626723225-41ryNx8BigL._SL500_.jpg?crop=1xw:1xh;center,top&resize=980:*"
+  ),
+  new Product(
+    15,
+    "Portable Speaker",
+    "Compact and powerful portable speaker for on-the-go music",
+    "70",
+    1,
+    "https://images-na.ssl-images-amazon.com/images/I/71xv8DjjpRL.jpg"
+  ),
+  new Product(
+    16,
+    "Digital Camera",
+    "Capture stunning moments with a high-resolution digital camera",
+    "450",
+    7,
+    "https://s.studiobinder.com/wp-content/uploads/2018/11/Best-Digital-Camera-Best-Camera-for-Video-Types-of-Camera-Professional-Digital-Camera-Canon-EOS-C200B.jpg?resolution=1366,1"
+  ),
+  new Product(
+    17,
+    "Air Purifier",
+    "Improve indoor air quality with a modern air purifier",
+    "100",
+    1,
+    "https://media.istockphoto.com/id/1437264927/photo/air-purifier-in-living-room-dust-protection.jpg?s=612x612&w=0&k=20&c=c06KndUpKEz3EByPIO8kxGdqI1cMOHRbAwF-juzh-co="
+  ),
 ];
