@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
+
 import { useState } from "react";
 import {
   Text,
@@ -7,8 +8,12 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import createUser from "../util/auth";
 
 const SignupScreen = ({ navigation }) => {
+
+
+
   const [values, setValues] = useState({
     user_name: "",
     mobile_no: "",
@@ -16,10 +21,32 @@ const SignupScreen = ({ navigation }) => {
     password: "",
   });
 
-  const handleSignUp = () => {
-    setValues("");
-    console.log("Sign-up:", values);
-  };
+
+
+  async function handleSignUp() {
+    try {
+      const email = values.email;
+      const password = values.password;
+  
+      if (email && password) {
+        console.log(email, password);
+        await createUser(email, password);
+        setValues({
+          user_name: "",
+          mobile_no: "",
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      console.error("Sign up failed:", error.message);
+      // Handle the error appropriately (show a message to the user, etc.)
+    }
+  }
+  
+  const signInHandler=()=>{
+    navigation.navigate('SigIn');
+  }
  
   return(
   <View style={styles.container}>
@@ -77,7 +104,7 @@ const SignupScreen = ({ navigation }) => {
     <View style={styles.footer}>
       <Text style={styles.footerText}>Already have an account? </Text>
       <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
-        <Text style={styles.footerLink}>Sign In</Text>
+        <Text style={styles.footerLink} onPress={signInHandler}>Sign In</Text>
       </TouchableOpacity>
     </View>
   </View>);

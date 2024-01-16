@@ -21,7 +21,7 @@ const SigninScreen = ({navigation}) => {
     navigation.navigate("All Category");
   };
   const signUpTextHandler = () => {
-    navigation.navigate("SignUp");
+    navigation.replace("SignUp");
   };
   return (
     <View style={styles.container}>

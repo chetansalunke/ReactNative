@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ProductItem = ({ product}) => {
+const ProductItem = ({product}) => {
 
+const navigation = useNavigation();
 
-   
-    // console.log(product)
+   console.log("from product");
+  console.log(product)
   const [isLiked, setIsLiked] = useState(false);
 
   // Function to handle the like button press
@@ -15,9 +16,15 @@ const ProductItem = ({ product}) => {
     setIsLiked(!isLiked);
   };
 
+  const onPressHandler =()=>{
+    navigation.navigate('ProductDetail',{p_id:product.item.product_id});
+  }
+
   return (
     <TouchableOpacity
       style={styles.productContainer}
+
+      onPress={onPressHandler}
       
     >
       <Image source={{ uri: product.item.image_url }} style={styles.productImage} />
