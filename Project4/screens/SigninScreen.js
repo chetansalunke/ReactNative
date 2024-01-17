@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import Category from "../models/category";
 
 const SigninScreen = ({navigation}) => {
 //   const navigation = useNavigation();
@@ -15,9 +16,24 @@ const SigninScreen = ({navigation}) => {
     password: "",
   });
 
-  const handleSignInButton = () => {
-    console.log(values);
-    setValues('');
+  const handleSignInButton = async() => {
+    try{
+      const email = values.email;
+      const password = values.password
+
+      if(email && password){
+        await login(email,password);
+        navigation.navigate('All Category');
+      }
+      else{
+        console.log("Enter Valid email & password");
+      }
+   
+    }
+    catch(error){
+      console.log(error.message);
+    }
+    
     navigation.navigate("All Category");
   };
   const signUpTextHandler = () => {

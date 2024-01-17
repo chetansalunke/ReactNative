@@ -27,13 +27,13 @@ const app = express();
 // MIDDELWARES
 app.use(express.json()); // To return files as json
 
-// ROUTES
-const corsOptions = {
-    origin: ['http://192.168.0.161:8081'],
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    optionsSuccessStatus: 204,
-  };
+// // ROUTES
+// const corsOptions = {
+//     origin: ['http://192.168.0.161:8081'],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     optionsSuccessStatus: 204,
+//   };
   
 app.use("/api",require('./routes/router'));
 app.use(cors(corsOptions)); 

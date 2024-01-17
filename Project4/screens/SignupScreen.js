@@ -37,7 +37,9 @@ const SignupScreen = ({ navigation }) => {
           email: "",
           password: "",
         });
+        
       }
+      navigation.navigate('SigIn');
     } catch (error) {
       console.error("Sign up failed:", error.message);
       // Handle the error appropriately (show a message to the user, etc.)
@@ -90,7 +92,7 @@ const SignupScreen = ({ navigation }) => {
         placeholder="Password"
         secureTextEntry
         accessibilityHint="#368dff"
-        enterKeyHint="fdsfdsdskdshkd"
+        enterKeyHint="done"
         value={values.password}
         onChangeText={(text) => setValues({ ...values, password: text })}
       />
