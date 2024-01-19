@@ -1,14 +1,35 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
+import React, { useLayoutEffect } from 'react';
+import { View, Text, Image, StyleSheet, ScrollView, Button,TouchableOpacity } from 'react-native';
 import { PRODUCT } from "../data/dummy-data";
 import { useRoute } from '@react-navigation/native';
+import IconButton from '../components/ui/IconButton';
+import { useDispatch, useSelector } from 'react-redux';
+import {addtoCart} from '../store/cartSlice';
 
-const ProductDetailScreen = () => {
+const ProductDetailScreen = ({navigation}) => {
   const route = useRoute();
   const pid = route.params.p_id;
 
+const cartItemIds =  useSelector((state)=> state.cart.ids);
+
   // Find the product with the given product_id
   const product = PRODUCT.find((product) => product.product_id === pid);
+  const dispatch = useDispatch();
+  const headerButtonHandler = ()=>{
+    navigation.navigate('AddToCart');
+  }
+  const addtoCartHandler=()=>{
+    console.log(pid);
+    dispatch(addtoCart({ id: pid }));
+    console.log("Item added");
+  }
+  useLayoutEffect(()=>{
+   navigation.setOptions({
+    headerRight:()=>{
+      return <IconButton icon="cart-outline" color='black' onPress={headerButtonHandler} />
+    }
+   })
+  },[navigation,headerButtonHandler])
 
   if (!product) {
     // Handle the case when the product is not found
@@ -22,15 +43,27 @@ const ProductDetailScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.productContainer}>
-        <Image
+      <View style={styles.imageContainer}>
+      <Image
           source={{ uri: product.image_url }}
           style={styles.productImage}
         />
+      </View>
         <View style={styles.productInfo}>
           <Text style={styles.productName}>{product.name}</Text>
-          <Text style={styles.productPrice}>${product.price}</Text>
+          <Text style={styles.productPrice}>₹{product.price}</Text>
           <Text style={styles.productDetails}>{product.details}</Text>
         </View>
+      </View>
+
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={addtoCartHandler}>
+          <Text style={styles.buttonText}>ADD TO CART</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={() => console.log('Button 2 pressed')}>
+          <Text style={styles.buttonText}>PLACE ORDER</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -39,12 +72,42 @@ const ProductDetailScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#fff',
+  },
+  buttonText:{
+    color:'white',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  button: {
+    flex: 1,
+    backgroundColor: '#34a9db',
+    borderRadius: 8,
+    paddingVertical: 12,
+    alignItems: 'center',
+    marginHorizontal: 8,
+    justifyContent: 'center',
+    // Add styling for the button
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 16,
+    backgroundColor: 'white',
+    // Add styling for the button container
+  },
+  imageContainer:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    margin:12,
+    
   },
   productContainer: {
     backgroundColor: '#fff',
-    borderRadius: 8,
-    margin: 16,
+    
+    margin: 1,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
@@ -54,7 +117,7 @@ const styles = StyleSheet.create({
   },
   productImage: {
     width: '100%',
-    height: 300,
+    height: 350,
     resizeMode: 'cover',
   },
   productInfo: {
