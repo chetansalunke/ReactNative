@@ -9,7 +9,8 @@ const CategoryItem = ({ name, image_url,id }) => {
 
   // item click handler
   const categoryPressHandler=()=>{
-    navigation.navigate('Product',{cat_id:id});
+    // navigation.navigate('Product',{cat_id:id});
+    navigation.navigate('Maids');
   }
   return (
     <Pressable

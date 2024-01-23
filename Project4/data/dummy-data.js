@@ -4,45 +4,45 @@ import Product from "../models/product";
 export const CATEGORIES = [
   new Category(
     1,
-    "Electronics",
+    "Maid",
     "Electronic gadgets and devices",
-    "https://imgs.search.brave.com/5Gri0Jb7NRBLg2mQ2P5M_2hBTtELtg0-bV_i5Cp3NTk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9ob21lLWFwcGxp/YW5jZXMtZ2FzLWNv/b2tlci10di1jaW5l/bWEtcmVmcmlnZXJh/dG9yLWFpci1jb25k/aXRpb25lci1taWNy/b3dhdmUtbGFwdG9w/LXdhc2hpbmctbWFj/aGluZV8yNTIwMjUt/NjkzLmpwZz9zaXpl/PTYyNiZleHQ9anBn"
+    "https://media.istockphoto.com/id/1417401413/photo/maid-making-the-bed-at-a-hotel.webp?b=1&s=170667a&w=0&k=20&c=2tKQEH2V21QNcomEmyBP0peodetSxHBLqFN-ZwKovNs="
   ),
   new Category(
     2,
-    "Clothing",
+    "Baby Sitter",
     "Fashionable clothing for all ages",
-    "https://cdn.shopify.com/s/files/1/0070/7032/files/image6_47d9edac-208b-47c9-8bd8-a1c02d247b0e_600x600.jpg?v=1620670412"
+    "https://media.istockphoto.com/id/1028379220/photo/mom-and-kid-girl-drawing-with-colored-pencils-at-home.jpg?s=612x612&w=0&k=20&c=nS8uCJ8ityMaERQKQfC_QaGGzOagouDD_7hnWGmt0x4="
   ),
   new Category(
     3,
-    "Home & Kitchen",
+    "Cook",
     "Home appliances and kitchen essentials",
-    "https://i.pinimg.com/originals/de/a1/2a/dea12a02bd8394f20f2abb251161ecef.jpg"
+    "https://media.istockphoto.com/id/1311030976/photo/portrait-of-a-young-women-chef-holding-wooden-spoon-and-spatula-standing-isolated-over-white.jpg?s=612x612&w=0&k=20&c=ZwrQBgDEKF9SDrLrvIx6i2RBUz0OoL6UBJeNtoJLx8Y="
   ),
   new Category(
     4,
-    "Electronics Accessories",
+    "Elder Care",
     "Accessories for electronic devices",
-    "https://t4.ftcdn.net/jpg/02/04/58/95/360_F_204589541_x9nVGj6sjChkSmYbJMhUkQkN7bhDVXVJ.jpg"
+    "https://media.istockphoto.com/id/1134451603/photo/she-knows-just-how-to-make-each-patient-feel-special.jpg?s=612x612&w=0&k=20&c=OLZuce52LblJl9JFp0dwtyFlDWbD3sTCxJYKhkLTxW8="
   ),
   new Category(
     5,
-    "Men's Clothing",
+    "Paitent Care",
     "Clothing for men",
-    "https://img.freepik.com/free-photo/portrait-handsome-young-model-man-dressed-jeans-clothes-posing-near-white-textured-wall_158538-7028.jpg?size=626&ext=jpg"
+    "https://media.istockphoto.com/id/1296176562/photo/caregiver-assist-senior-woman-at-home.jpg?s=612x612&w=0&k=20&c=UiHsEPH-avDi9_sK3D3BSAiEdqPr45Pg5qGOprVR5BA="
   ),
   new Category(
     6,
-    "Women's Clothing",
+    "Japa Maid",
     "Clothing for women",
-    "https://img.freepik.com/free-photo/attractive-stylish-smiling-woman-choosing-apparel-clothing-store_285396-4642.jpg?size=626&ext=jpg"
+    "https://media.istockphoto.com/id/1136852444/photo/mother-playing-with-her-toddler-boy-smiling.jpg?s=612x612&w=0&k=20&c=G32lUWaTnROxkvdZvTSME7aGKImUCTvvJ_K1UNGjTTk="
   ),
   new Category(
     7,
-    "Mobile Phones",
+    "Pet Care",
     "Smartphones and mobile devices",
-    "https://www.stuff.tv/wp-content/uploads/sites/2/2022/06/Best-Mid-Range-Phones-lead.jpg?w=1080"
+    "https://media.istockphoto.com/id/1425107939/photo/african-american-woman-is-playing-with-her-french-bulldog-puppy-while-walking-in-the-dog-park.jpg?s=612x612&w=0&k=20&c=-n5PMV-oiMejkUIMmbrS7RZe3rMFUDQg4vPNa3ANZdQ="
   ),
 ];
 
