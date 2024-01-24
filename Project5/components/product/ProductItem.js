@@ -10,17 +10,7 @@ const ProductItem = ({ product }) => {
   console.log(product);
   const [isLiked, setIsLiked] = useState(false);
 
-  const [count, setCount] = useState(0);
-
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-
-  const handleDecrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    }
-  };
+  
 
   // Function to handle the like button press
   const handleLikePress = () => {
@@ -53,19 +43,6 @@ const ProductItem = ({ product }) => {
       <View style={styles.productInfo}>
         <Text style={styles.productName}>{product.item.name}</Text>
         <Text style={styles.productPrice}>₹{product.item.price}</Text>
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.iconButton} onPress={handleDecrement}>
-          <Icon name="remove" size={30} color="white" />
-        </TouchableOpacity>
-        <View style={styles.counterContainer}>
-          <Text style={styles.counterText}>{count}</Text>
-        </View>
-
-        <TouchableOpacity style={styles.iconButton} onPress={handleIncrement}>
-          <Icon name="add" size={30} color="white" />
-        </TouchableOpacity>
       </View>
     </TouchableOpacity>
   );
