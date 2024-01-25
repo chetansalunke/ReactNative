@@ -6,8 +6,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 const ProductItem = ({ product }) => {
   const navigation = useNavigation();
 
-  console.log("from product");
-  console.log(product);
+  // console.log("from product");
+  // console.log(product);
   const [isLiked, setIsLiked] = useState(false);
 
   

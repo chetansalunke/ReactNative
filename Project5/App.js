@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import SignupScreen from "./screens/SignupScreen";
-import { useImperativeHandle } from "react";
+import { useEffect, useImperativeHandle } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -11,12 +11,14 @@ import ProductScreen from "./screens/ProductScreen";
 import ProductDetailScreen from "./screens/ProductDetailScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import AddtoCartScreen from "./screens/AddtoCartScreen";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "./store/store";
-
+import { PRODUCT } from "./data/dummy-data";
+import { addMyProducts } from "./store/MyproductSlice";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  
   return (
     <Provider store={store}>
       <NavigationContainer>
