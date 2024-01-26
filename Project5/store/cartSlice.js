@@ -20,7 +20,7 @@ const cartSlice = createSlice({
       // }
       const { product_id, name, price, qty } = action.payload;
       state.item.push({product_id, name, price, qty});
-      console.log("Data add to redux!");
+      console.log("Data Pushed in the redux");
 
     },
     removeFromCart: (state, action) => {
