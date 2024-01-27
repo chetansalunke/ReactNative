@@ -4,6 +4,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import Icon1 from "react-native-vector-icons/FontAwesome";
 import Icon from "react-native-vector-icons/Ionicons";
 const ProductItem = ({ product }) => {
+
   const navigation = useNavigation();
 
   // console.log("from product");

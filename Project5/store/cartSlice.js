@@ -2,34 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {item:[]},
-  // reducer get the current state by default
+  initialState: { item: [] },
   reducers: {
     addtoCart: (state, action) => {
-      
-      // const existingIndex = state.ids.findIndex(
-      //   (product_id) => id === action.payload.id
-      // );
+      const existingIndex = state.item.findIndex(
+        (item) => item.product_id === action.payload.product_id
+      );
 
-      // if (existingIndex !== -1) {
-      //   // If the item is already in the cart, you may want to update quantity or handle it as needed
-      //   console.log("Item is already in the cart");
-      // } else {
-      //   // If not, add the item to the cart
-      //   state.push(action.payload);
-      // }
-      const { product_id, name, price, qty } = action.payload;
-      state.item.push({product_id, name, price, qty});
-      console.log("Data Pushed in the redux");
+      if (existingIndex !== -1) {
+        // If the item is already in the cart, update the quantity
+        state.item[existingIndex].qty = state[existingIndex].qty + 1;
+      } else {
+        // If not, add the item to the cart
+        state.item.push(action.payload);
+      }
 
+      console.log("Data pushed to the redux");
     },
     removeFromCart: (state, action) => {
-      state.ids.splice(state.ids.indexOf(action.payload.id), 1);
+      state.item.splice(state.item.indexOf(action.payload.id), 1);
     },
   },
 });
 
-export const addtoCart = cartSlice.actions.addtoCart;
-export const removeFromCart = cartSlice.actions.removeFromCart;
+export const { addtoCart, removeFromCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
