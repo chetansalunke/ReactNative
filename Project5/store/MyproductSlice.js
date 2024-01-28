@@ -6,7 +6,19 @@ const MyproductSlice = createSlice({
     reducers:{
         addMyProducts(state,action){
             state.push(action.payload)
+        },
+        increaseQty(state,action){
+            let myindex = -1;
+            state.map((item,index)=>{
+                if(item.product_id == action.payload ){
+                    myindex = index;
+                }
+                else{
+                    state[myindex].qty = state[myindex].qty+1;
+                }
+            })
         }
+
     },
 
 });
