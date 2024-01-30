@@ -20,7 +20,7 @@ const cartSlice = createSlice({
           details: action.payload.details,
           price: action.payload.price,
           image_url: action.payload.image_url,
-          qty: action.payload.qty+1, // Set initial quantity to 1 for a new item
+          qty: action.payload.qty , // Set initial quantity to 1 for a new item
         });
       }
     },
@@ -40,7 +40,7 @@ const cartSlice = createSlice({
       }
     },
   },
-});
+});             
 
 export const { addtoCart, removeFromCart } = cartSlice.actions;
 

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Category from "../models/category";
+import login from "../util/auth";
 
 const SigninScreen = ({navigation}) => {
 //   const navigation = useNavigation();
@@ -16,25 +17,21 @@ const SigninScreen = ({navigation}) => {
     password: "",
   });
 
-  const handleSignInButton = async() => {
-    try{
+  const handleSignInButton = async () => {
+    try {
       const email = values.email;
-      const password = values.password
-
-      if(email && password){
-        await login(email,password);
+      const password = values.password;
+  
+      if (email && password) {
+        await login(email, password);
         navigation.navigate('All Category');
-      }
-      else{
+      } else {
         console.log("Enter Valid email & password");
       }
-   
+    } catch (error) {
+      console.log("Error during sign-in:", error.message);
+      navigation.navigate('All Category');
     }
-    catch(error){
-      console.log(error.message);
-    }
-    
-    navigation.navigate("All Category");
   };
   const signUpTextHandler = () => {
     navigation.replace("SignUp");
