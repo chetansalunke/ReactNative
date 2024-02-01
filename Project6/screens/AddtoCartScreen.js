@@ -79,7 +79,7 @@ const AddtoCartScreen = () => {
         // You can adjust the number of columns based on your design
       />
 
-      {/* {cart summary} */}
+      {/* Cart summary */}
       <View style={styles.cartSummary}>
         <Text style={styles.cartSummaryText}>Cart Summary:</Text>
         {cartItems.map((cartItem) => (
