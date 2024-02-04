@@ -1,96 +1,80 @@
-// const BookingScreen=()=>{
-
-// }
-
-// export default BookingScreen;
-
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Dropdown } from 'react-native-element-dropdown';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import DropdownComponent from '../components/ui/DropdownComponent';
+import symbolicateStackTrace from 'react-native/Libraries/Core/Devtools/symbolicateStackTrace';
 
 const BookingScreen = () => {
-    const [service, setService] = useState('');
-    const [location, setLocation] = useState('');
-    const [time, setTime] = useState('');
-  
-    const services = [
-      { label: 'Cleaning', value: 'cleaning' },
-      { label: 'Cooking', value: 'cooking' },
-      { label: 'Babysitting', value: 'babysitting' },
-      // Add more services as needed
-    ];
-  
-    const locations = [
-      { label: 'Living Room', value: 'living-room' },
-      { label: 'Kitchen', value: 'kitchen' },
-      { label: 'Bedroom', value: 'bedroom' },
-      // Add more locations as needed
-    ];
-  
-    const times = [
-      { label: 'Morning', value: 'morning' },
-      { label: 'Afternoon', value: 'afternoon' },
-      { label: 'Evening', value: 'evening' },
-      // Add more times as needed
-    ];
-  
-    const handleContinue = () => {
-      // Handle the continue action
-      console.log('Continue button pressed');
-      console.log('Selected Service:', service);
-      console.log('Selected Location:', location);
-      console.log('Selected Time:', time);
-      // Add your navigation logic or further processing here
-    };
-  
-    return (
-     <View style={styles.container}>
-  <DropDownPicker
-    items={services}
-    placeholder="Select Service"
-    containerStyle={styles.dropdownContainer}
-    style={styles.dropdown}
-    itemStyle={styles.dropdownItem}
-    dropDownStyle={styles.dropdownList}
-    onChangeItem={(item) => setService(item.value)}
-    zIndex={9999}
-  />
+  const [selectedValues, setSelectedValues] = useState({
+    locations: '',
+    services: '',
+    times: '',
+  });
 
-  <DropDownPicker
-    items={locations}
-    placeholder="Select Location"
-    containerStyle={styles.dropdownContainer}
-    style={styles.dropdown}
-    itemStyle={styles.dropdownItem}
-    dropDownStyle={styles.dropdownList}
-    onChangeItem={(item) => setLocation(item.value)}
-    zIndex={9998}
-  />
+  const services = [
+    { label: 'Cleaning', value: 'cleaning' },
+    { label: 'Cooking', value: 'cooking' },
+    { label: 'Babysitting', value: 'babysitting' },
+    { label: 'Elder Care', value: 'eldercare' },
+    { label: 'Japa Maid', value: 'japamaid' },
+    { label: 'Pet Care', value: 'petcare' },
+   
+  ];
 
-  <DropDownPicker
-    items={times}
-    placeholder="Select Time"
-    containerStyle={styles.dropdownContainer}
-    style={styles.dropdown}
-    itemStyle={styles.dropdownItem}
-    dropDownStyle={styles.dropdownList}
-    onChangeItem={(item) => setTime(item.value)}
-    zIndex={9997}
-  />
+  const locations = [
+    { label: 'Shivaji Nagar', value: 'Shivaji Nagar'},
+    { label: 'Baner', value: 'Baner' },
+    { label: 'Bhukum', value: 'Bhukum' },
+    { label: 'Balewadi', value: 'Balewadi' },
+    { label: 'Hinjewadi', value: 'Hinjewadi' },
+    { label: 'Kothrud', value: 'Kothrud' },
+  ];
 
-  <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
-    <Text style={styles.buttonText}>Continue</Text>
-  </TouchableOpacity>
-</View>
+  const times = [
+    { label: 'Morning', value: 'morning' },
+    { label: 'Afternoon', value: 'afternoon' },
+    { label: 'Evening', value: 'evening' },
+  ];
 
-    );
+  const handleContinue = () => {
+    console.log("Selected value");
+    console.log(selectedValues);
+    Alert.alert("Booking Done!")
+    setSelectedValues({
+      locations: '',
+      services: '',
+      times: '',
+    });
   };
+  const handleDropdownChange = (key,selectedValue) => {
+    setSelectedValues((prevValues) => ({
+      ...prevValues,
+      [key]: selectedValue,
+    }));
+    
+  };
+
+  return (
+    <View style={styles.container}>
+      
+    <DropdownComponent data={locations} value={selectedValues.locations} placeholder="Select Location" onValueChange={(selectedValue) => handleDropdownChange('locations', selectedValue)}/>
+    <DropdownComponent data={services} value={selectedValues.services}  placeholder="Select Service" onValueChange={(selectedValue) => handleDropdownChange('services', selectedValue)}/>
+    <DropdownComponent data={times}  value={selectedValues.times}  placeholder="Select Time" onValueChange={(selectedValue) => handleDropdownChange('times', selectedValue)}/>
+
+
+      <TouchableOpacity style={styles.continueButton} onPress={handleContinue}>
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
+   marginTop:180,
+   padding:12,
+   backgroundColor:'#fff'
   },
   dropdownContainer: {
     width: '80%',
@@ -117,5 +101,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
 export default BookingScreen;
