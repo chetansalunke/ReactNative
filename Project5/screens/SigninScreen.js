@@ -6,12 +6,14 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import Category from "../models/category";
 import login from "../util/auth";
+import axios from "axios";
 
-const SigninScreen = ({navigation}) => {
-//   const navigation = useNavigation();
+const SigninScreen = ({ navigation }) => {
+  //   const navigation = useNavigation();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -21,20 +23,38 @@ const SigninScreen = ({navigation}) => {
     try {
       const email = values.email;
       const password = values.password;
-  
+
       if (email && password) {
-        await login(email, password);
-        navigation.navigate('All Category');
+        console.log("fetch something");
+        // navigation.navigate('SignUp');
+        const fetchData = async () => {
+          try {
+            const response = await axios.post('http://192.168.0.161:3000/api/login_user',{email,password});
+            console.log(response.data.status);
+            const status = response.data.status
+            if(status === 1){
+              navigation.navigate("All Category");
+            }
+            else{
+              ToastAndroid.show('enter valid email password !',ToastAndroid.SHORT);
+            }
+          } catch (error) {
+            console.log(error.message);
+          }
+        };
+      
+        fetchData(); // Call fetchData function
+        
       } else {
         console.log("Enter Valid email & password");
       }
     } catch (error) {
       console.log("Error during sign-in:", error.message);
-      navigation.navigate('All Category');
+     
     }
   };
   const signUpTextHandler = () => {
-    navigation.replace("SignUp");
+    
   };
   return (
     <View style={styles.container}>
