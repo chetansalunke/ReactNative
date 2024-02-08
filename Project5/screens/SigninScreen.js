@@ -43,7 +43,7 @@ const SigninScreen = ({ navigation }) => {
           }
         };
       
-        fetchData(); // Call fetchData function
+        fetchData(); 
         
       } else {
         console.log("Enter Valid email & password");
