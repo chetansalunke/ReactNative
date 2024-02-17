@@ -54,7 +54,7 @@ export const PRODUCT = [
     "1100",
     1,
     "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bGFwdG9wJTIwY29tcHV0ZXJ8ZW58MHx8MHx8fDA=",
-    0
+    1
   ),
   new Product(
     2,
@@ -62,7 +62,7 @@ export const PRODUCT = [
     '5.5" OLED display, 128GB storage, dual-camera setup, Snapdragon 855',
     "700",
     6,
-    "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9iaWxlJTIwcGhvbmV8ZW58MHx8MHx8fDA=",0
+    "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bW9iaWxlJTIwcGhvbmV8ZW58MHx8MHx8fDA=",1
   ),
   new Product(
     3,
@@ -70,7 +70,7 @@ export const PRODUCT = [
     "Comfortable running shoes with breathable mesh, suitable for long-distance running",
     "80",
     2,
-    "https://images.unsplash.com/photo-1585944672394-4c58a015c1fb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJ1bm5pbmclMjBzaG9lc3xlbnwwfHwwfHx8MA==",0
+    "https://images.unsplash.com/photo-1585944672394-4c58a015c1fb?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJ1bm5pbmclMjBzaG9lc3xlbnwwfHwwfHx8MA==",1
   ),
   new Product(
     4,
@@ -78,7 +78,7 @@ export const PRODUCT = [
     '55" 4K UHD Smart TV with HDR, built-in streaming apps',
     "900",
     1,
-    "https://shs-media.storage.googleapis.com/wp-content/uploads/2023/04/17154135/IMG_8749-1024x541.jpg"
+    "https://shs-media.storage.googleapis.com/wp-content/uploads/2023/04/17154135/IMG_8749-1024x541.jpg",1
   ),
   new Product(
     5,
@@ -86,7 +86,7 @@ export const PRODUCT = [
     "Programmable coffee maker with built-in grinder, 12-cup capacity",
     "130",
     3,
-    "https://img.freepik.com/premium-photo/coffee-maker_152290-1.jpg?size=626&ext=jpg",0
+    "https://img.freepik.com/premium-photo/coffee-maker_152290-1.jpg?size=626&ext=jpg",1
   ),
   new Product(
     6,
@@ -94,7 +94,7 @@ export const PRODUCT = [
     "Over-ear wireless headphones with noise cancellation",
     "150",
     4,
-    "https://static.independent.co.uk/2021/06/21/15/Bose%20NC%20700%20Headphones.jpeg",0
+    "https://static.independent.co.uk/2021/06/21/15/Bose%20NC%20700%20Headphones.jpeg",1
   ),
   new Product(
     7,
@@ -102,7 +102,7 @@ export const PRODUCT = [
     "Cotton casual shirt for men, available in various colors and sizes",
     "40",
     5,
-    "https://img.freepik.com/free-photo/business-casual-shirt-white-closeup-outdoor-photoshoot_53876-119744.jpg?size=626&ext=jpg",0
+    "https://img.freepik.com/free-photo/business-casual-shirt-white-closeup-outdoor-photoshoot_53876-119744.jpg?size=626&ext=jpg",1
   ),
   new Product(
     8,
@@ -110,7 +110,7 @@ export const PRODUCT = [
     "Elegant floral dress for women, perfect for special occasions",
     "60",
     6,
-    "https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZHJlc3N8ZW58MHx8MHx8fDA=",0
+    "https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZHJlc3N8ZW58MHx8MHx8fDA=",1
   ),
   new Product(
     9,
@@ -118,7 +118,7 @@ export const PRODUCT = [
     "Latest mobile phone with advanced features and high-resolution camera",
     "800",
     7,
-    "https://m.media-amazon.com/images/I/51NPFoz5cOS.jpg",0
+    "https://m.media-amazon.com/images/I/51NPFoz5cOS.jpg",1
   ),
   new Product(
     10,
@@ -126,7 +126,7 @@ export const PRODUCT = [
     "Wireless Bluetooth earbuds with long battery life and compact design",
     "50",
     4,
-    "https://m.media-amazon.com/images/I/61autD8TAxL.jpg",0
+    "https://m.media-amazon.com/images/I/61autD8TAxL.jpg",1
   ),
   new Product(
     11,
@@ -134,7 +134,7 @@ export const PRODUCT = [
     "Durable and stylish backpack with multiple compartments for storage",
     "35",
     2,
-    "https://media.istockphoto.com/id/820482470/photo/backpack.jpg?s=612x612&w=0&k=20&c=iUP2CSdHYco7zt56iecRphEn4FiXLDrtd4B9wiyAIT8=",0
+    "https://media.istockphoto.com/id/820482470/photo/backpack.jpg?s=612x612&w=0&k=20&c=iUP2CSdHYco7zt56iecRphEn4FiXLDrtd4B9wiyAIT8=",1
   ),
   new Product(
     12,
@@ -142,7 +142,7 @@ export const PRODUCT = [
     "Fitness and health tracking smartwatch with a vibrant display",
     "120",
     3,
-    "https://media.gettyimages.com/id/481616102/photo/apple-watch-sport.jpg?s=612x612&w=0&k=20&c=uJuuSi9jiwjhAm8lehYQTskuPkrQOJSM9rBrbpn-zQw=",0
+    "https://media.gettyimages.com/id/481616102/photo/apple-watch-sport.jpg?s=612x612&w=0&k=20&c=uJuuSi9jiwjhAm8lehYQTskuPkrQOJSM9rBrbpn-zQw=",1
   ),
   new Product(
     13,
@@ -150,7 +150,7 @@ export const PRODUCT = [
     "Fashionable sunglasses with UV protection, available in various styles",
     "25",
     5,
-    "https://media.istockphoto.com/id/1081398784/photo/sunglass-on-white-background.jpg?s=612x612&w=0&k=20&c=3gwUtbgJcRcjB3U60IpRhGNYFSNVYK6QfgrlhVVgK9w=",0
+    "https://media.istockphoto.com/id/1081398784/photo/sunglass-on-white-background.jpg?s=612x612&w=0&k=20&c=3gwUtbgJcRcjB3U60IpRhGNYFSNVYK6QfgrlhVVgK9w=",1
   ),
   new Product(
     14,
@@ -158,7 +158,7 @@ export const PRODUCT = [
     "Organize your workspace with a multifunctional desk organizer",
     "20",
     1,
-    "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1626723225-41ryNx8BigL._SL500_.jpg?crop=1xw:1xh;center,top&resize=980:*",0
+    "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1626723225-41ryNx8BigL._SL500_.jpg?crop=1xw:1xh;center,top&resize=980:*",1
   ),
   new Product(
     15,
@@ -166,7 +166,7 @@ export const PRODUCT = [
     "Compact and powerful portable speaker for on-the-go music",
     "70",
     1,
-    "https://images-na.ssl-images-amazon.com/images/I/71xv8DjjpRL.jpg",0
+    "https://images-na.ssl-images-amazon.com/images/I/71xv8DjjpRL.jpg",1
   ),
   new Product(
     16,
@@ -174,7 +174,7 @@ export const PRODUCT = [
     "Capture stunning moments with a high-resolution digital camera",
     "450",
     7,
-    "https://s.studiobinder.com/wp-content/uploads/2018/11/Best-Digital-Camera-Best-Camera-for-Video-Types-of-Camera-Professional-Digital-Camera-Canon-EOS-C200B.jpg?resolution=1366,1",0
+    "https://s.studiobinder.com/wp-content/uploads/2018/11/Best-Digital-Camera-Best-Camera-for-Video-Types-of-Camera-Professional-Digital-Camera-Canon-EOS-C200B.jpg?resolution=1366,1",1
   ),
   new Product(
     17,
@@ -182,6 +182,6 @@ export const PRODUCT = [
     "Improve indoor air quality with a modern air purifier",
     "100",
     1,
-    "https://media.istockphoto.com/id/1437264927/photo/air-purifier-in-living-room-dust-protection.jpg?s=612x612&w=0&k=20&c=c06KndUpKEz3EByPIO8kxGdqI1cMOHRbAwF-juzh-co=",0
+    "https://media.istockphoto.com/id/1437264927/photo/air-purifier-in-living-room-dust-protection.jpg?s=612x612&w=0&k=20&c=c06KndUpKEz3EByPIO8kxGdqI1cMOHRbAwF-juzh-co=",1
   ),
 ];

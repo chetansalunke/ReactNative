@@ -41,7 +41,7 @@ const AddToCartScreen = () => {
             <Text style={styles.itemName}>{item.name}</Text>
             <Text style={styles.itemPrice}>Price: ${item.price}</Text>
             <View style={{ flexDirection: "row", alignItems: "flex-start" }}>
-              {item.qty > 0 && (
+              {item.qty >= 0 && (
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => decrementButtonHandler(item)}
@@ -49,10 +49,10 @@ const AddToCartScreen = () => {
                   <Text style={styles.buttonText}>-</Text>
                 </TouchableOpacity>
               )}
-              {item.qty > 0 && (
+              {item.qty >=  0 && (
                 <Text style={styles.quantityText}>{item.qty}</Text>
               )}
-              {item.qty > 0 && (
+              {item.qty >= 0 && (
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => incrementButtonHandler(item)}

@@ -26,24 +26,25 @@ const SigninScreen = ({ navigation }) => {
 
       if (email && password) {
         console.log("fetch something");
+        navigation.navigate("All Category");
         // navigation.navigate('SignUp');
-        const fetchData = async () => {
-          try {
-            const response = await axios.post('http://192.168.0.161:3000/api/login_user',{email,password});
-            console.log(response.data.status);
-            const status = response.data.status
-            if(status === 1){
-              navigation.navigate("All Category");
-            }
-            else{
-              ToastAndroid.show('enter valid email password !',ToastAndroid.SHORT);
-            }
-          } catch (error) {
-            console.log(error.message);
-          }
-        };
+        // const fetchData = async () => {
+        //   try {
+        //     const response = await axios.post('http://192.168.0.161:3000/api/login_user',{email,password});
+        //     console.log(response.data.status);
+        //     const status = response.data.status
+        //     if(status === 1){
+        //       navigation.navigate("All Category");
+        //     }
+        //     else{
+        //       ToastAndroid.show('enter valid email password !',ToastAndroid.SHORT);
+        //     }
+        //   } catch (error) {
+        //     console.log(error.message);
+        //   }
+        // };
       
-        fetchData(); 
+        // fetchData(); 
         
       } else {
         console.log("Enter Valid email & password");

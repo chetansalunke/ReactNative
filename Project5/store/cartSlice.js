@@ -20,7 +20,7 @@ const cartSlice = createSlice({
           details: action.payload.details,
           price: action.payload.price,
           image_url: action.payload.image_url,
-          qty: action.payload.qty , // Set initial quantity to 1 for a new item
+          qty: action.payload.qty, // Set initial quantity to 1 for a new item
         });
       }
     },
@@ -39,9 +39,34 @@ const cartSlice = createSlice({
         }
       }
     },
+    incrementQuantity: (state, action) => {
+      const itemInCart = state.item.find(
+        (item) => item.product_id == action.product_id
+      );
+      itemInCart.qty++;
+    },
+    decrementQuantity: (state, action) => {
+      // we have to find the items in the cart
+      const itemInCart = state.item.find(
+        (item) => item.product_id == action.payload.id
+      );
+      if (itemInCart.quantity == 1) {
+        const removeFromCart = state.item.filter(
+          (item) => item.product_id !== action.payload.product_id
+        );
+        state.cart = removeFromCart;
+      } else {
+        itemInCart.qty--;
+      }
+    },
   },
-});             
+});
 
-export const { addtoCart, removeFromCart } = cartSlice.actions;
+export const {
+  addtoCart,
+  removeFromCart,
+  decrementQuantity,
+  incrementQuantity,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

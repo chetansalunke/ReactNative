@@ -7,14 +7,12 @@ import {
   ScrollView,
   Button,
   TouchableOpacity,
-  Pressable,
-  FlatList,
 } from "react-native";
 import { PRODUCT } from "../data/dummy-data";
 import { CommonActions, useRoute } from "@react-navigation/native";
 import IconButton from "../components/ui/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart } from "../store/cartSlice";
+import { addtoCart, decrementQuantity, incrementQuantity } from "../store/cartSlice";
 import { addMyProducts } from "../store/MyproductSlice";
 
 const ProductDetailScreen = ({ navigation }) => {
@@ -27,15 +25,18 @@ const ProductDetailScreen = ({ navigation }) => {
   // Find the product with the given product_id
   const product = PRODUCT.find((product) => product.product_id === pid);
 
-  console.log(product);
-  
+console.log(product);
+
   const dispatch = useDispatch();
-  const adddButtonHandler = () => {
-    setQty(qty + 1);
+
+  const adddButtonHandler = (item) => {
+    dispatch(incrementQuantity(item));
   };
-  const decrementButtonHandler = () => {
-    if (qty > 0) {
-      setQty(qty - 1);
+  const decrementButtonHandler = (item) => {
+    if(item.qty == 1){
+      dispatch(removeFromCart(item));
+    }else{
+      dispatch(decrementQuantity(item));
     }
   };
 
@@ -107,7 +108,7 @@ const ProductDetailScreen = ({ navigation }) => {
               <Text style={{ color: "#fff" }}>-</Text>
             </TouchableOpacity>
             <Text style={{ marginLeft: 10, fontSize: 16, fontWeight: "600" }}>
-              {qty}
+              {product.qty}
             </Text>
             <TouchableOpacity
               style={{
