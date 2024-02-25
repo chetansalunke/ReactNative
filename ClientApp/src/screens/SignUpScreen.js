@@ -48,23 +48,22 @@ const SignUpScreen = () => {
     mobile_no: '',
     email: '',
     password: '',
-    industry_type:'',
-    register_as:''
+    industry_type: '',
+    register_as: '',
   });
 
-  const handelSelectedValue=(value)=>{
+  const handelSelectedValue = value => {
     setValues({...values, industry_type: value});
     console.log(values);
-  }
-  const handelSelectedValue2=(value)=>{
+  };
+  const handelSelectedValue2 = value => {
     setValues({...values, register_as: value});
-  }
+  };
 
-
-const handelSubmitButton=()=>{
-  console.log(values);
-  setValues('');
-}
+  const handelSubmitButton = () => {
+    console.log(values);
+    setValues('');
+  };
   const signInHandler = () => {
     navigation.navigate('SigIn');
   };
@@ -147,10 +146,18 @@ const handelSubmitButton=()=>{
           </TouchableOpacity>
         </View>
         <View style={styles.inputContainer1}>
-          <DropdownComponent data={data} placeholder="Industry Type" selectedValue={handelSelectedValue}/>
+          <DropdownComponent
+            data={data}
+            placeholder="Industry Type"
+            selectedValue={handelSelectedValue}
+          />
         </View>
         <View style={styles.inputContainer1}>
-          <DropdownComponent data={data} placeholder="Register as" selectedValue={handelSelectedValue2}/>
+          <DropdownComponent
+            data={data}
+            placeholder="Register as"
+            selectedValue={handelSelectedValue2}
+          />
         </View>
         <TouchableOpacity style={styles.button} onPress={handelSubmitButton}>
           <Text style={styles.buttonText}>SUMBIT</Text>
