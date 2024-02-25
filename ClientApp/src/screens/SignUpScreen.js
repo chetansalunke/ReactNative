@@ -60,7 +60,6 @@ const SignUpScreen = () => {
     setValues({...values, register_as: value});
   }
 
-
 const handelSubmitButton=()=>{
   console.log(values);
   setValues('');
