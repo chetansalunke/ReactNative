@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import { PRODUCT } from "../data/dummy-data";
 import { CommonActions, useRoute } from "@react-navigation/native";
@@ -45,8 +46,12 @@ console.log(product);
   };
   const addtoCartHandler = () => {
   //  dispatch({...product,qty: qty})
-  console.log("add to cart");
   dispatch(addtoCart({ ...product, qty: qty }));
+  ToastAndroid.showWithGravity(
+    "Item Added",
+    ToastAndroid.SHORT,
+    ToastAndroid.CENTER
+  );
   };
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -86,47 +91,19 @@ console.log(product);
 
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: "column",
               alignItems: "stretch",
               marginTop: 5,
             }}
           >
             <Text style={styles.productPrice}>₹{product.price}</Text>
-            <TouchableOpacity
-              style={{
-                height: 27,
-                borderRadius: 10,
-                backgroundColor: "#34a9db",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingLeft: 10,
-                paddingRight: 10,
-                marginLeft: 10,
-              }}
-              onPress={decrementButtonHandler}
-            >
-              <Text style={{ color: "#fff" }}>-</Text>
-            </TouchableOpacity>
-            <Text style={{ marginLeft: 10, fontSize: 16, fontWeight: "600" }}>
+            <Text style={styles.qtyTxt}>Qty</Text>
+            <Text style={{ marginTop: 4,marginLeft: 4, fontSize: 16, fontWeight: "600", marginLeft: 8, }}>
               {product.qty}
             </Text>
-            <TouchableOpacity
-              style={{
-                height: 27,
-                borderRadius: 10,
-                backgroundColor: "#34a9db",
-                justifyContent: "center",
-                alignItems: "center",
-                paddingLeft: 10,
-                paddingRight: 10,
-                marginLeft: 10,
-              }}
-              onPress={adddButtonHandler}
-            >
-              <Text style={{ color: "#fff" }}>+</Text>
-            </TouchableOpacity>
+            
           </View>
-          <Text style={styles.productDetails}>{product.details}</Text>
+          <Text style={styles.productDetails}>Details:- {product.details}</Text>
         </View>
       </View>
 
@@ -143,99 +120,19 @@ console.log(product);
         </TouchableOpacity>
       </View>
     </ScrollView>
-    // <View style={{ flex: 1, backgroundColor: "red" }}>
-    //   <FlatList
-    //     data={PRODUCT}
-    //     renderItem={(item, index) => {
-    //       return (
-    //         <View
-    //           style={{
-    //             width: "94%",
-    //             alignSelf: "center",
-    //             height: 120,
-    //             backgroundColor: "#f0e856",
-    //             marginTop: 10,
-    //             borderRadius: 10,
-    //             elevation: 1,
-    //             flexDirection: "row",
-    //             alignItems: "center",
-    //             paddingLeft: 10,
-    //           }}
-    //         >
-    //           <Image
-    //             source={{ uri: product.image_url }}
-    //             style={{ width: 100, height: 100, borderRadius: 10 }}
-    //           />
-    //           <View style={{ padding: 12 }}>
-    //             <Text
-    //               style={{ fontSize: 16, color: "#000", fontWeight: "600" }}
-    //             >
-    //               {product.name}
-    //             </Text>
-    //             <Text style={{ fontWeight: "400" }}>
-    //               {product.details.substring(0, 30) + ".."}
-    //             </Text>
-    //             <Text style={{ color: "#3498db", fontWeight: "600" }}>
-    //               ₹{product.price}
-    //             </Text>
-    //             <View style={{ flexDirection: "row", alignItems: "center", marginTop:5 }}>
-    //               <TouchableOpacity
-    //                 style={{
-    //                  height:27,
-    //                   borderRadius: 10,
-    //                   backgroundColor: "#368dff",
-    //                   justifyContent: "center",
-    //                   alignItems: "center",
-    //                   paddingLeft: 10,
-    //                   paddingRight: 10,
-    //                 }}
-    //                 onPress={()=>{
-    //                   dispatch(addtoCart(item))
-    //                 }}
-    //               >
-    //                 <Text style={{ color: "#fff" }}>Add To Cart</Text>
-    //               </TouchableOpacity>
-    //               <TouchableOpacity
-    //                 style={{
-    //                  height:27,
-    //                   borderRadius: 10,
-    //                   backgroundColor: "#368dff",
-    //                   justifyContent: "center",
-    //                   alignItems: "center",
-    //                   paddingLeft: 10,
-    //                   paddingRight: 10,
-    //                   marginLeft:10,
-
-    //                 }}
-    //               >
-    //                 <Text style={{ color: "#fff" }}>-</Text>
-    //               </TouchableOpacity>
-    //               <Text style={{marginLeft:10,fontSize:16,fontWeight:'600'}}>{'0'}</Text>
-    //               <TouchableOpacity
-    //                 style={{
-    //                  height:27,
-    //                   borderRadius: 10,
-    //                   backgroundColor: "#368dff",
-    //                   justifyContent: "center",
-    //                   alignItems: "center",
-    //                   paddingLeft: 10,
-    //                   paddingRight: 10,
-    //                   marginLeft:10,
-    //                 }}
-    //               >
-    //                 <Text style={{ color: "#fff" }}>+</Text>
-    //               </TouchableOpacity>
-    //             </View>
-    //           </View>
-    //         </View>
-    //       );
-    //     }}
-    //   />
-    // </View>
+   
   );
 };
 
 const styles = StyleSheet.create({
+  qtyTxt:{
+    color: 'black',
+    fontSize: 16,
+    marginTop: 3,
+    marginLeft: 4,
+    fontWeight: "bold",
+
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -281,7 +178,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   productImage: {
-    width: "94%",
+    width: "80%",
     height: 250,
     resizeMode: "cover",
     borderRadius: 10,

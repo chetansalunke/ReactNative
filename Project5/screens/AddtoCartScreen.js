@@ -8,11 +8,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart, removeFromCart } from "../store/cartSlice";
+import { addtoCart, decrementQuantity, incrementQuantity, removeFromCart } from "../store/cartSlice";
 
 const AddToCartScreen = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.item);
+  console.log("Item in the cart");
+  console.log(cartItems);
 
   const getTotal = () => {
     let total = 0;
@@ -23,12 +25,17 @@ const AddToCartScreen = () => {
   };
 
   const incrementButtonHandler = (item) => {
-    dispatch(addtoCart({ ...item, qty: item.qty + 1 }));
+    console.log("");
+    dispatch(addtoCart(item));
   };
 
   const decrementButtonHandler = (item) => {
-    dispatch(removeFromCart(item));
-    console.log("decrement "+item.product_id);
+    if(item.qty == 1){
+      dispatch(removeFromCart(item));
+    }
+    else{
+      dispatch(decrementQuantity(item));
+    }
   };
 
   const renderItem = ({ item }) => {
@@ -139,7 +146,6 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   quantityText: {
-    marginLeft: 10,
     fontSize: 16,
     fontWeight: "600",
   },

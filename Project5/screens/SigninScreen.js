@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Text,
   View,
@@ -7,56 +7,67 @@ import {
   TextInput,
   TouchableOpacity,
   ToastAndroid,
+  Animated,
 } from "react-native";
 import Category from "../models/category";
 import login from "../util/auth";
 import axios from "axios";
+import { AuthContext } from "../store/auth-context";
 
 const SigninScreen = ({ navigation }) => {
-  //   const navigation = useNavigation();
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
+
+  const authCtx = useContext(AuthContext);
+    // const navigation = useNavigation();
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
 
   const handleSignInButton = async () => {
+    setIsAuthenticating(true);
+    const { email, password } = values;
+    if (!email || !password) {
+      ToastAndroid.showWithGravity(
+        "Enter valid email and password",
+        ToastAndroid.SHORT,
+        ToastAndroid.CENTER
+      );
+    }
     try {
-      const email = values.email;
-      const password = values.password;
+      const fetchData = async () => {
+        try {
+          const response = await axios.post(
+            "http://192.168.0.161:3000/api/login_user",
+            { email, password }
+          );
+          // printing the response
+          console.log("Printing Response");
+          console.log(response.data);
 
-      if (email && password) {
-        console.log("fetch something");
-        navigation.navigate("All Category");
-        // navigation.navigate('SignUp');
-        // const fetchData = async () => {
-        //   try {
-        //     const response = await axios.post('http://192.168.0.161:3000/api/login_user',{email,password});
-        //     console.log(response.data.status);
-        //     const status = response.data.status
-        //     if(status === 1){
-        //       navigation.navigate("All Category");
-        //     }
-        //     else{
-        //       ToastAndroid.show('enter valid email password !',ToastAndroid.SHORT);
-        //     }
-        //   } catch (error) {
-        //     console.log(error.message);
-        //   }
-        // };
-      
-        // fetchData(); 
-        
-      } else {
-        console.log("Enter Valid email & password");
-      }
+          // checking the response
+          if (response.data.success) {
+            const token = response.data.token;
+            authCtx.authinticate(token);
+          } else {
+            ToastAndroid.showWithGravity(
+              response.data.error,
+              ToastAndroid.SHORT,
+              ToastAndroid.CENTER
+            );
+            setValues("");
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      };
+      fetchData();
     } catch (error) {
       console.log("Error during sign-in:", error.message);
-     
+      setIsAuthenticating(false);
     }
   };
-  const signUpTextHandler = () => {
-    
-  };
+  const signUpTextHandler = () => {};
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign In</Text>

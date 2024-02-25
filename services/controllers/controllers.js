@@ -19,6 +19,32 @@ const getAllUsers = (req, res) => {
     }
   );
 };
+const loginUser =(req ,res)=>{
+  
+  const {user_name,email,password, mobile_no} =req.body;
+
+  connection.execute(
+    'select * from api.register_user where email=? and password=?',[email,password],
+    (err,result,fields)=>{
+      if(err){
+        console.error("Error while featching the data");
+        res.status(500).send("Internal Server Error");
+        return;
+      }
+
+      if(result.length != 0 ){
+        console.log("The response from database");
+        console.log(result[0]);
+        res.json({ success: true, token:result[0].token });
+      }
+      else{
+        res.json({ error: "Invalid email or password" });
+      }
+
+    }
+  )
+
+}
 const createUser = (req, res) => {
   // destructure the value from the req.body
   const { user_name, email, password, mobile_no } = req.body;
@@ -44,7 +70,7 @@ const createUser = (req, res) => {
       const token = jwt.sign({ user_name, email }, "your_secret_key_here", {
         expiresIn: "1h",
       });
-
+      
       // Insert the new user into the database
       connection.execute(
         "INSERT INTO api.register_user (user_name, email, password, mobile_no, token) VALUES (?, ?, ?, ?, ?)",

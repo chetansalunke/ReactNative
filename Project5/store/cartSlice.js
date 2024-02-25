@@ -20,7 +20,7 @@ const cartSlice = createSlice({
           details: action.payload.details,
           price: action.payload.price,
           image_url: action.payload.image_url,
-          qty: action.payload.qty, // Set initial quantity to 1 for a new item
+          qty: 1, // Set initial quantity to 1 for a new item
         });
       }
     },
@@ -43,14 +43,19 @@ const cartSlice = createSlice({
       const itemInCart = state.item.find(
         (item) => item.product_id == action.product_id
       );
+     
       itemInCart.qty++;
+      console.log("Item in the cart");
+      console.log(itemInCart);
     },
     decrementQuantity: (state, action) => {
       // we have to find the items in the cart
       const itemInCart = state.item.find(
-        (item) => item.product_id == action.payload.id
+        (item) => item.product_id == action.payload.product_id
       );
-      if (itemInCart.quantity == 1) {
+     
+      
+      if (itemInCart.qty == 1) {
         const removeFromCart = state.item.filter(
           (item) => item.product_id !== action.payload.product_id
         );
