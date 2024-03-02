@@ -3,6 +3,7 @@
 const connection = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { response } = require("express");
 
 // Function to get all users
 const getAllUsers = (req, res) => {
@@ -14,41 +15,51 @@ const getAllUsers = (req, res) => {
         res.status(500).send("Internal Server Error");
         return;
       }
-
       res.status(200).json(result);
     }
   );
 };
-const loginUser =(req ,res)=>{
-  
-  const {user_name,email,password, mobile_no} =req.body;
+
+const loginUser = (req, res) => {
+  const { user_name, password } = req.body;
 
   connection.execute(
-    'select * from api.register_user where email=? and password=?',[email,password],
-    (err,result,fields)=>{
-      if(err){
+    "select * from api.register_user where email=? and password=?",
+    [user_name, password],
+    (err, result, fields) => {
+      if (err) {
         console.error("Error while featching the data");
         res.status(500).send("Internal Server Error");
         return;
       }
 
-      if(result.length != 0 ){
+      // Generate a JWT token
+      const token = jwt.sign({ user_name }, "chetan", {
+        expiresIn: "1h",
+      });
+      if (result.length != 0) {
         console.log("The response from database");
         console.log(result[0]);
-        res.json({ success: true, token:result[0].token });
-      }
-      else{
+        
+        res.json({ id   :result[0].user_id,user_name:result[0].first_name,success: true, token: token });
+      } else {
         res.json({ error: "Invalid email or password" });
       }
-
     }
-  )
-
-}
+  );
+};
 const createUser = (req, res) => {
   // destructure the value from the req.body
-  const { user_name, email, password, mobile_no } = req.body;
-
+  const {
+    first_name,
+    last_name,
+    company_name,
+    mobile_no,
+    email,
+    password,
+    industry_type,
+    register_as,
+  } = req.body;
   // Check if the email is already registered
   connection.execute(
     "SELECT * FROM api.register_user WHERE email=?",
@@ -66,15 +77,19 @@ const createUser = (req, res) => {
         return;
       }
 
-      // Generate a JWT token
-      const token = jwt.sign({ user_name, email }, "your_secret_key_here", {
-        expiresIn: "1h",
-      });
-      
       // Insert the new user into the database
       connection.execute(
-        "INSERT INTO api.register_user (user_name, email, password, mobile_no, token) VALUES (?, ?, ?, ?, ?)",
-        [user_name, email, password, mobile_no, token],
+        "INSERT INTO api.register_user (first_name, last_name, company_name, mobile_number, email, password, industry_type, register_as) VALUES (?, ?, ?, ?, ?,?,?,?)",
+        [
+          first_name,
+          last_name,
+          company_name,
+          mobile_no,
+          email,
+          password,
+          industry_type,
+          register_as,
+        ],
         (err, result, fields) => {
           if (err) {
             console.error("Error inserting user:", err);
@@ -82,17 +97,15 @@ const createUser = (req, res) => {
             return;
           }
           // Send a response with the generated token
-          res
-            .status(200)
-            .json({ message: "User registered successfully", token });
+          res.status(200).json({ message: "User registered successfully" });
         }
       );
     }
   );
 };
-5
+
 const getAllCategory = (req, res) => {
-  connection.execute("select * from api.product", (err, result, fields) => {
+  connection.execute("select * from api.category", (err, result, fields) => {
     if (err) {
       res.status(500).send({ message: "Error while fatching category" }, err);
       console.log(err.message);
@@ -119,6 +132,22 @@ const getProduceId = (req, res) => {
     }
   );
 };
+const getProducts = (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+
+  connection.execute(
+    "SELECT * FROM api.product",
+    (err, result, fields) => {
+      if (err) {
+        res.status(500).send({ message: "Error while fatching category" }, err);
+        console.log(err.message);
+        return;
+      }
+      res.send(result);
+    }
+  );
+};
 
 module.exports = {
   getAllUsers,
@@ -126,4 +155,5 @@ module.exports = {
   getAllCategory,
   getProduceId,
   loginUser,
+  getProducts,
 };

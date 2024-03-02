@@ -25,7 +25,7 @@ const express = require('express');
 const app = express();
 
 // MIDDELWARES
-app.use(express.json()); // To return files as json
+app.use(express.json()); 
  
 app.use("/api",require('./routes/router'));
 app.listen(3000,()=>{

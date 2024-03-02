@@ -13,20 +13,22 @@ import { PRODUCT } from "../data/dummy-data";
 import { CommonActions, useRoute } from "@react-navigation/native";
 import IconButton from "../components/ui/IconButton";
 import { useDispatch, useSelector } from "react-redux";
-import { addtoCart, decrementQuantity, incrementQuantity } from "../store/cartSlice";
-import { addMyProducts } from "../store/MyproductSlice";
+import {
+  addtoCart,
+  decrementQuantity,
+  incrementQuantity,
+} from "../store/cartSlice";
+
 
 const ProductDetailScreen = ({ navigation }) => {
   const [qty, setQty] = useState(0);
   const route = useRoute();
   const pid = route.params.p_id;
- 
- 
 
   // Find the product with the given product_id
   const product = PRODUCT.find((product) => product.product_id === pid);
 
-console.log(product);
+  console.log(product);
 
   const dispatch = useDispatch();
 
@@ -34,9 +36,9 @@ console.log(product);
     dispatch(incrementQuantity(item));
   };
   const decrementButtonHandler = (item) => {
-    if(item.qty == 1){
+    if (item.qty == 1) {
       dispatch(removeFromCart(item));
-    }else{
+    } else {
       dispatch(decrementQuantity(item));
     }
   };
@@ -45,13 +47,13 @@ console.log(product);
     navigation.navigate("AddToCart");
   };
   const addtoCartHandler = () => {
-  //  dispatch({...product,qty: qty})
-  dispatch(addtoCart({ ...product, qty: qty }));
-  ToastAndroid.showWithGravity(
-    "Item Added",
-    ToastAndroid.SHORT,
-    ToastAndroid.CENTER
-  );
+    //  dispatch({...product,qty: qty})
+    dispatch(addtoCart({ ...product, qty: qty }));
+    ToastAndroid.showWithGravity(
+      "Item Added",
+      ToastAndroid.SHORT,
+      ToastAndroid.CENTER
+    );
   };
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -75,8 +77,6 @@ console.log(product);
       </View>
     );
   }
-
-  
   return (
     <ScrollView style={styles.container}>
       <View style={styles.productContainer}>
@@ -98,10 +98,17 @@ console.log(product);
           >
             <Text style={styles.productPrice}>₹{product.price}</Text>
             <Text style={styles.qtyTxt}>Qty</Text>
-            <Text style={{ marginTop: 4,marginLeft: 4, fontSize: 16, fontWeight: "600", marginLeft: 8, }}>
+            <Text
+              style={{
+                marginTop: 4,
+                marginLeft: 4,
+                fontSize: 16,
+                fontWeight: "600",
+                marginLeft: 8,
+              }}
+            >
               {product.qty}
             </Text>
-            
           </View>
           <Text style={styles.productDetails}>Details:- {product.details}</Text>
         </View>
@@ -120,18 +127,16 @@ console.log(product);
         </TouchableOpacity>
       </View>
     </ScrollView>
-   
   );
 };
 
 const styles = StyleSheet.create({
-  qtyTxt:{
-    color: 'black',
+  qtyTxt: {
+    color: "black",
     fontSize: 16,
     marginTop: 3,
     marginLeft: 4,
     fontWeight: "bold",
-
   },
   container: {
     flex: 1,

@@ -16,9 +16,8 @@ import { AuthContext } from "../store/auth-context";
 
 const SigninScreen = ({ navigation }) => {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
-
   const authCtx = useContext(AuthContext);
-    // const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -71,7 +70,6 @@ const SigninScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Sign In</Text>
-
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -80,7 +78,6 @@ const SigninScreen = ({ navigation }) => {
           onChangeText={(text) => setValues({ ...values, email: text })}
         />
       </View>
-
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}

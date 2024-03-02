@@ -1,5 +1,4 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { DefaultTheme, findFocusedRoute } from "@react-navigation/native";
 import { createContext, useState } from "react";
 
 
@@ -22,14 +21,12 @@ function AuthContextProvider({children}){
         setAuthToken(null);
         AsyncStorage.removeItem('token');
     }
-
     const value={
         token : authToken,
         isAuthinticated: !!authToken,
         authinticate:authinticate,
         logout:logout,
     };
-
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 
 }

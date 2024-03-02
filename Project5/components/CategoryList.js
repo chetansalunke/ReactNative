@@ -2,7 +2,6 @@ import CategoryItem from "./CategoryItem";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 const CategoryList = ({ data }) => {
 
-  
   const renderItem = ({ item }) => (
     <CategoryItem name={item.title} image_url={item.imageUrl} id={item.id}  />
   );
@@ -11,7 +10,7 @@ const CategoryList = ({ data }) => {
     <View>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id.toString()} // Assuming id is unique, convert it to a string
+        keyExtractor={(item) => item.id.toString()} 
         renderItem={renderItem}
         numColumns={2}
       />
